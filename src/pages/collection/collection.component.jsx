@@ -2,6 +2,7 @@ import React from 'react';
 import CollectionItem from '../../components/collection-item/collection-item.component';
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { connect } from 'react-redux';
 import {
   CollectionPageContainer,
   CollectionTitle,
@@ -28,5 +29,10 @@ const CollectionPage = () => {
     )
   };
 
+  const mapStateToProps = (state, ownProps) => ({
 
-export default CollectionPage;
+    collection: selectCollection(ownProps.collectionId)(state)
+
+});
+
+export default connect(mapStateToProps)(CollectionPage);
