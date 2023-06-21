@@ -13,7 +13,7 @@ import { selectCollection } from '../../redux/shop/shop.selectors';
 
 const CollectionPage = () => {
     const { collectionId } = useParams();
-    const collection = useSelector(selectCollection(collectionId));
+    const collection = useSelector(selectCollection(collectionId)) ;
     const {title, items } = collection;
     //console.log(collection);
   
