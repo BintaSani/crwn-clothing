@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -12,22 +13,18 @@ import CollectionsOverviewContainer from '../../components/collections-overview/
 
 
 
-class ShopPage extends React.Component{
-  componentDidMount(){
-    const {fetchCollectionsStart} = this.props;
+const ShopPage = ({fetchCollectionsStart}) => {
+  useEffect(() => {
     fetchCollectionsStart();
-    
-  }
-  render(){
-    return (
-      <div className='shop-page'>
-        <Routes>
-        <Route exact path='/' Component={CollectionsOverviewContainer}/>
-        <Route path='/:collectionId' Component={CollectionPageContainer} />
-        </Routes>
-      </div>
-    )
-  }
+  }, [fetchCollectionsStart]);
+  return (
+    <div className='shop-page'>
+      <Routes>
+      <Route exact path='/' Component={CollectionsOverviewContainer}/>
+      <Route path='/:collectionId' Component={CollectionPageContainer} />
+      </Routes>
+    </div>
+  )
 };
 
 

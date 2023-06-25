@@ -16,6 +16,7 @@ const CollectionPage = () => {
     const collection = useSelector(selectCollection(collectionId)) ;
     const {title, items } = collection;
     //console.log(collection);
+
   
     return (
         <CollectionPageContainer>
