@@ -53,7 +53,7 @@ const SignIn = ({emailSignInStart, googleSignInStart, managementHidden}) => {
                 <CheckBox type='checkbox' id='vendor' onClick={managementHidden}/><Label >Vendor</Label>
 
                 <ButtonsBarContainer>
-                <CustomButton type='submit'>Sign In</CustomButton>
+                <CustomButton type='submit' >Sign In</CustomButton>
                 <CustomButton type='button' onClick={googleSignInStart} isGoogleSignIn>Sign in with Google </CustomButton>
                 </ButtonsBarContainer>
             </form>
@@ -63,10 +63,11 @@ const SignIn = ({emailSignInStart, googleSignInStart, managementHidden}) => {
 }
 
 const mapDispatchToProps = dispatch =>({
+    managementHidden: () => dispatch(managementHidden()),
     googleSignInStart: () => dispatch(googleSignInStart()) ,
     emailSignInStart: (email, password) => 
-      dispatch(emailSignInStart({email, password})),
-    managementHidden: () => dispatch(managementHidden())
+      dispatch(emailSignInStart({email, password}))
+    
 });
 
 

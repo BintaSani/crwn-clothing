@@ -1,5 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
+//import ReactGA from 'react-ga';
+//import TagManager from 'react-gtm-module';
 import { Routes , Route, Navigate} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -17,12 +19,13 @@ import { checkUserSession } from './redux/user/user.actions';
 import ManagementAdmin from './pages/management/management.component';
 
 
-
 const App = ({checkUserSession, currentUser}) => {
   //unsubscribeFromAuth = null
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
+
+
 
   return (
     <div >
