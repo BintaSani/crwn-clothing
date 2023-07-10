@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-//import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 //import TagManager from 'react-gtm-module';
 import { Routes , Route, Navigate} from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -18,12 +18,20 @@ import { selectCurrentUser } from './redux/user/user.selector';
 import { checkUserSession } from './redux/user/user.actions';
 import ManagementAdmin from './pages/management/management.component';
 
+const TRACKING_ID = 'G-0SMLX5VNWT'; // OUR_TRACKING_ID
+
+ReactGA.initialize(TRACKING_ID);
 
 const App = ({checkUserSession, currentUser}) => {
   //unsubscribeFromAuth = null
   useEffect(() => {
     checkUserSession();
   }, [checkUserSession]);
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
 
 
 
