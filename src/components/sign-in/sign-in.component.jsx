@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import useAnalyticsEventTracker from '../../pages/analytics/analytics';
 import { connect } from 'react-redux';
 
 import FormInput from '../form-input/form-input.component';
@@ -30,7 +29,6 @@ const SignIn = ({emailSignInStart, googleSignInStart, managementHidden}) => {
         setCredentials({...userCredentials, [name]: value});
     };
 
-    const gaEventTracker = useAnalyticsEventTracker('Contact us');
     return(
         <SignInContainer>
             <SignInTitle>I already have an account</SignInTitle>
@@ -56,7 +54,7 @@ const SignIn = ({emailSignInStart, googleSignInStart, managementHidden}) => {
 
                 <ButtonsBarContainer>
                 <CustomButton type='submit' >Sign In</CustomButton>
-                <CustomButton type='button' onClick={()=>gaEventTracker('googleSignInStart')} isGoogleSignIn>Sign in with Google </CustomButton>
+                <CustomButton type='button' onClick={googleSignInStart} isGoogleSignIn>Sign in with Google </CustomButton>
                 </ButtonsBarContainer>
             </form>
         </SignInContainer>
