@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
-import {arrayUnion, updateDoc} from 'firebase/firestore';
+import { arrayUnion, updateDoc} from 'firebase/firestore';
 
 
 
@@ -96,27 +96,31 @@ export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export const addOrderDoc = async (orderKey,objectsToAdd,) => {
   const orderRef= firestore.collection(orderKey).doc("orderItems");
+  // const ref = firestore.doc(`${orderKey}/orderItems`)
+  // console.log(ref);
+  
   
   objectsToAdd.forEach(obj =>
     updateDoc(orderRef, {data: arrayUnion(obj)})
   )
   console.log(objectsToAdd)
+  
 };
 
-export const convertOrderSnapshotToMap = (orders, objectsToAdd) => {
+export const convertOrderSnapshotToMap = (orders) => {
   const transformedOrder = orders.docs.map(doc => {
-    const {data,name} = doc.data();
+    const {data} = doc.data();
     
 
     return {
-     routeName: encodeURI(name),
+  
       data: data,
       
     }
   });
   //console.log(transformedCollection);
   return transformedOrder.reduce((accumulator, collection) => {
-    accumulator[collection.name] = collection;
+    accumulator = collection;
     return accumulator;
   }, {});
   
