@@ -13,30 +13,26 @@ import {ReactComponent as Logo} from '../../assets/4.1 crown.svg';
 import { HeaderContainer,LogoContainer,OptionsContainer,OptionLink } from './header.styles';
 import { signOutStart } from '../../redux/user/user.actions';
 import { selectManagementHidden } from '../../redux/management/management.selector';
+import { auth } from '../../firebase/firebase.utils';
+import Drop from '../dp/dp.component';
 
 
-const Header = ({ currentUser, hide, hidden, signOutStart }) => (
+const Header = ({ currentUser, hide, hidden, signOutStart }) => {
+  const user =auth.currentUser;
+  return(
     <HeaderContainer>
       <LogoContainer to='/'>
         <Logo className='logo'/>
       </LogoContainer>
       <OptionsContainer>
-        {
-          hide ?
-          <OptionLink to='/shop'>
-            SHOP
-          </OptionLink>
-          :
-          null
-        }
-        {
-          hide ?
-          <OptionLink to='/shop'>
-            CONTACT
-          </OptionLink>
-          :
-          null
-        }
+        <OptionLink to='/shop'>
+          SHOP
+        </OptionLink>
+      
+        <OptionLink to='/shop'>
+          CONTACT
+        </OptionLink>
+      
         {
           hide ? null
           :
@@ -53,12 +49,17 @@ const Header = ({ currentUser, hide, hidden, signOutStart }) => (
           (<OptionLink to='/signin'>SIGN IN</OptionLink>
           )}
         <CartIcon/>
+        {
+        hide ? <Drop src={user ? user.photoURL : ''} alt='' /> : null
+        }
       </OptionsContainer>
       {
         hidden ? null : <CartDropdown/>
       }
-    </HeaderContainer>
-);
+      
+      
+    </HeaderContainer>)
+};
 
 
 const mapStateToProps = createStructuredSelector({

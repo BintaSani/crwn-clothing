@@ -2,7 +2,7 @@
 
  const selectAdmin = state => state.admin;
 
- export const selectAdminHidden = createSelector(
+export const selectIsAdminFetching = createSelector(
     [selectAdmin],
-    admin => admin.hideContent
-)
+    admin => admin.isFetching
+  );

@@ -11,12 +11,13 @@ import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPage from './pages/checkout/checkout.component';
-
 import { GlobalStyle } from './global.styles';
 
 import { selectCurrentUser } from './redux/user/user.selector';
 import { checkUserSession } from './redux/user/user.actions';
 import ManagementAdmin from './pages/management/management.component';
+
+
 
 const TRACKING_ID = 'G-0SMLX5VNWT'; // OUR_TRACKING_ID
 
@@ -29,11 +30,8 @@ const App = ({checkUserSession, currentUser}) => {
   }, [checkUserSession]);
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.pageview(window.location.pathname);
   }, []);
-
-
-
 
   return (
     <div >
@@ -60,7 +58,7 @@ const App = ({checkUserSession, currentUser}) => {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
+  currentUser: selectCurrentUser
   
 });
 

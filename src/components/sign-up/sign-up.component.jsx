@@ -25,7 +25,7 @@ const SignUp = ({signUpStart}) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-        alert("passwords don't match");
+        alert("passwords doesn't match");
         return;
     }  
     signUpStart({displayName, email, password});

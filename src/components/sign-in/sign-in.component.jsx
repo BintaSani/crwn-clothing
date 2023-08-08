@@ -50,7 +50,7 @@ const SignIn = ({emailSignInStart, googleSignInStart, managementHidden}) => {
                 label='password'
                 required/>  
 
-                <CheckBox type='checkbox' id='vendor' onClick={managementHidden}/><Label >Vendor</Label>
+                <CheckBox type='checkbox' id='vendor' onClick={managementHidden}/><Label >Admin</Label>
 
                 <ButtonsBarContainer>
                 <CustomButton type='submit' >Sign In</CustomButton>

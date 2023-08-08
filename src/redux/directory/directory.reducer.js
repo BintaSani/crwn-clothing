@@ -2,35 +2,35 @@ const INITIAL_STATE = {
     sections: [
         {
           title: 'hats',
-          imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+          imageUrl: 'https://i.ibb.co/y5PMvrP/pexels-hat.jpg',
           id: 1,
           linkUrl: 'shop/hats'
         },
         {
           title: 'jackets',
-          imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
+          imageUrl: 'https://i.ibb.co/nnnQGxV/pexels-jacket.jpg',
           id: 2,
           linkUrl: 'shop/jackets'
         },
         {
-          title: 'sneakers',
-          imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
+          title: 'shoes',
+          imageUrl: 'https://i.ibb.co/xHb6KZB/pexels-shoe.jpg',
           id: 3,
-          linkUrl: 'shop/sneakers'
+          linkUrl: 'shop/shoes'
         },
         {
-          title: 'womens',
-          imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
+          title: 'jewelries',
+          imageUrl: 'https://i.ibb.co/nmKv6tW/pexels-jewelry.jpg',
           size: 'large',
           id: 4,
-          linkUrl: 'shop/womens'
+          linkUrl: 'shop/jewelries'
         },
         {
-          title: 'mens',
-          imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
+          title: 'bags',
+          imageUrl: 'https://i.ibb.co/mtd4bQ2/pexels-bag.jpg',
           size: 'large',
           id: 5,
-          linkUrl: 'shop/mens'
+          linkUrl: 'shop/bags'
         }
       ]
       

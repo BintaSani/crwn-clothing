@@ -1,6 +1,8 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import {arrayUnion, updateDoc} from 'firebase/firestore';
+
 
 
 
@@ -46,7 +48,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
-  
+  console.log(collectionRef);
 
   const batch = firestore.batch();
   objectsToAdd.forEach(obj => {
@@ -73,6 +75,9 @@ export const convertCollectionsSnapshotToMap = (collections) => {
     return accumulator;
   }, {});
 }; 
+
+
+
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
@@ -88,5 +93,33 @@ export const firestore = firebase.firestore();
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({prompt: 'select_account'});
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+
+export const addOrderDoc = async (orderKey,objectsToAdd,) => {
+  const orderRef= firestore.collection(orderKey).doc("orderItems");
+  
+  objectsToAdd.forEach(obj =>
+    updateDoc(orderRef, {data: arrayUnion(obj)})
+  )
+  console.log(objectsToAdd)
+};
+
+export const convertOrderSnapshotToMap = (orders, objectsToAdd) => {
+  const transformedOrder = orders.docs.map(doc => {
+    const {data,name} = doc.data();
+    
+
+    return {
+     routeName: encodeURI(name),
+      data: data,
+      
+    }
+  });
+  //console.log(transformedCollection);
+  return transformedOrder.reduce((accumulator, collection) => {
+    accumulator[collection.name] = collection;
+    return accumulator;
+  }, {});
+  
+}; 
 
 export default firebase;
