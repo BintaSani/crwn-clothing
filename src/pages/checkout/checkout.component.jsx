@@ -4,31 +4,31 @@ import { createStructuredSelector } from 'reselect';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component.jsx';
 import {selectCartItems,selectCartTotal} from '../../redux/cart/cart.selectors.js' 
 import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component.jsx';
-import { addOrderDoc, convertOrderSnapshotToMap } from '../../firebase/firebase.utils.js';
-import { updateQuantity } from '../../redux/order/order.actions.js';
-import { firestore } from '../../firebase/firebase.utils.js';
+import { addOrderDoc } from '../../firebase/firebase.utils.js';
+// import { updateQuantity } from '../../redux/order/order.actions.js';
+// import { firestore } from '../../firebase/firebase.utils.js';
 import {
     CheckoutPageContainer,
     CheckoutHeaderContainer,
     HeaderBlockContainer,
     TotalContainer,
-    WarningContainer
+    WarningContainer,
+    TotalSpan
 } from './checkout.styles';
 
-
-
+// const update = updateQuantity
+// const orderRef= firestore.collection('orders');
+// export const Shot = orderRef.onSnapshot(async snapshot => {
+        
+//         const orderItem= convertOrderSnapshotToMap(snapshot);
+//         console.log(update(orderItem))
+//     });
   
 const  CheckoutPage = ({cartItems, total}) => {
-    const update = updateQuantity
-    const order =addOrderDoc('orders',cartItems.map(({id,name, imageUrl, quantity,price}) => ({id,name, imageUrl,quantity,price})));
-    console.log(order);
-    const orderRef= firestore.collection('orders');
-    orderRef.onSnapshot(async snapshot => {
-        
-        const orderItem= convertOrderSnapshotToMap(snapshot)
-        //console.log(quantity);
-        console.log(update(orderItem));
-    });
+    
+    // const order =addOrderDoc('orders',cartItems.map(({id,name, imageUrl, quantity,price}) => ({id,name, imageUrl,quantity,price})));
+    // console.log(order);
+    
     return (
     <CheckoutPageContainer>
         <CheckoutHeaderContainer>
@@ -54,7 +54,7 @@ const  CheckoutPage = ({cartItems, total}) => {
             )
         }
         <TotalContainer>
-            <span>TOTAL: ${total}</span>
+            <TotalSpan>TOTAL: ${total}</TotalSpan>
         </TotalContainer>
 
         <WarningContainer>
@@ -62,14 +62,14 @@ const  CheckoutPage = ({cartItems, total}) => {
             <br/>
             4242 4242 4242 4242 - Exp: 01/25 - Cvv:123
         </WarningContainer>
-        <StripeCheckoutButton   price={total} />
+        <StripeCheckoutButton  onSubmit={()=>addOrderDoc('orders',cartItems.map(({id,name, imageUrl, quantity,price}) => ({id,name, imageUrl,quantity,price})))} price={total} />
         
     </CheckoutPageContainer>
 )};
 
-const mapDispatchToProps = dispatch => ({
-    updateQuantity: orderItems => dispatch(updateQuantity(orderItems))
-});
+// const mapDispatchToProps = dispatch => ({
+//     updateQuantity: orderItems => dispatch(updateQuantity(orderItems))
+// });
 
 const mapStateToProps = createStructuredSelector({
 
@@ -77,4 +77,4 @@ const mapStateToProps = createStructuredSelector({
     total: selectCartTotal
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage);
+export default connect(mapStateToProps)(CheckoutPage);

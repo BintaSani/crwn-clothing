@@ -1,0 +1,30 @@
+  const rootRef= firestore.getInstance();
+  const ordersRef = rootRef.collection(orderKey)
+    ordersRef.whereArrayContains("data", quantity).get().addOnCompleteListener(quantityTask =>
+      quantityTask.apply(
+        if(quantityTask.isSuccessful){
+          for(document in result){
+            var docIdRef = ordersRef.document(document.id)
+            docIdRef.update("data", FieldValue.arrayRemove(quantity)).addOnCompleteListener(removeTask =>
+              if (removeTask.isSuccessful){
+                docIdRef.update("data", FieldValue.arrayUnion(data(id, imageUrl, name, price, quantity + 2))).addOnCompleteListener(additionalTask =>
+                  if (additionalTask.isSuccessful){
+                    console.log("update completed");
+                  } else{
+                    additionalTask.exception?.message?.let{
+                      console.log( it  )
+                    }
+                   }
+                )
+              } else {
+                removeTask.exception?.message?.let{
+                  console.log( it  )
+              }
+            )
+          }
+        }else {
+            quantityTaskTask.exception?.message?.let{
+              console.log( it  )
+
+      )
+    )

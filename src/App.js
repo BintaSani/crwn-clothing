@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useEffect } from 'react';
 import ReactGA from 'react-ga';
 //import TagManager from 'react-gtm-module';
@@ -23,6 +23,8 @@ const TRACKING_ID = 'G-0SMLX5VNWT'; // OUR_TRACKING_ID
 
 ReactGA.initialize(TRACKING_ID);
 
+//const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
+
 const App = ({checkUserSession, currentUser}) => {
   //unsubscribeFromAuth = null
   useEffect(() => {
@@ -39,6 +41,7 @@ const App = ({checkUserSession, currentUser}) => {
       <Header />
       <Routes>
         <Route path='/' Component={HomePage} />
+        
         <Route path='/shop/*' Component={ShopPage} />
         <Route path='/checkout' Component={CheckoutPage} />
         <Route path='/admin' Component={ManagementAdmin}/>

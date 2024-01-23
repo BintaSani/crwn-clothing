@@ -22,7 +22,7 @@ export const CheckoutHeaderContainer = styled.div`
   width: 100%;
   height: 40px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   border-bottom: 1px solid darkgrey;
 
   @media screen and (max-width: 800px) {
@@ -48,7 +48,12 @@ export const TotalContainer = styled.div`
   margin-left: auto;
   font-size: 36px;
 `;
-
+export const TotalSpan =styled.span`
+  @media screen and (max-width: 800px) {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+`;
 export const WarningContainer = styled.div`
   text-align: center;
   margin-top: 40px;

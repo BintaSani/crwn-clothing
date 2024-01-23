@@ -7,13 +7,30 @@ export const ProfileContainer= styled.div`
 export const HeaderImage= styled.div`
     border-radius: 5px;
     width: 90%;
-    height: 10vh;
+    height: 10.5vh;
     background-color: #1b7a5b;
+    padding-top: 0.4vh;
+    padding-left: 1.5%;
+    
+    
+`;
+export const HeaderInput = styled.input`
+    
+    
+`;
+export const HeaderPicture = styled.img`
+    width: 99%;
+    height: 97%;
+    border-radius: 5px;
+    
     
 `;
 export const EditHeader = styled.div`
-    padding-top: 2px;
-    margin-left: 135px;
+    boarder: 2px solid black;
+    padding-top: 3px;
+    margin-left: 155px;
+    position: absolute;
+    z-index: 2;
 `;
 export const Image = styled.img`
       width: 100%;
@@ -37,19 +54,20 @@ export const DetailsContainer= styled.div`
     height: 20vh;
     width: 90%;
     margin-top: 5vh;
-    text-align: centre;
+    text-align: center;
+
 `;
 export const UserName= styled.span`
     font-size: 0.8rem;
     font-weight: bold;
-    margin-left: 32%;
+    text-align: center;
     
     
 `;
 export const Sales= styled.h4`
     font-size: 0.7rem;
     font-weight: bold;
-    margin-left: 45%;
+    
     margin-top: 2vh;
     
     
@@ -57,14 +75,14 @@ export const Sales= styled.h4`
 export const TotalSales= styled.h4`
     font-size: 0.9rem;
     font-weight: bold;
-    margin-left: 30%;
+    text-align: center;
     margin-top: -1px;
     color: #1b7a5b;
     
 `;
 export const SalesText= styled.p`
     font-size: 0.7rem;
-    margin-left: 45%;
+    
     margin-top: -2vh;
     color: grey;
     
@@ -72,7 +90,7 @@ export const SalesText= styled.p`
 `;
 export const YourEarnings= styled.p`
     font-size: 0.6rem;
-    margin-left: 12%;
+    text-align: center;
     margin-top: -2vh;
     color: #1b7a5b;
     
@@ -115,10 +133,13 @@ export const WalletContainer = styled.div`
     margin-left: auto;
     margin-right: auto;
     padding-top: 1vh;
+    justify-content: center;
 `;
 export const Icon = styled.div`
+    text-align: centre;
+    display: flex;
+    justify-content: center;
     
-    margin-left: 38%;
 `;
 export const PaymentMethod= styled.p`
     font-size: 0.6rem;
@@ -138,6 +159,6 @@ export const Withdraw = styled.div`
     color: #ffffff;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 6px;
-    padding-left: 10px;
+    padding-top: 8px;
+    text-align: center;
 `;

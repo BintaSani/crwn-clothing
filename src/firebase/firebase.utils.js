@@ -1,8 +1,9 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
-import { arrayUnion, updateDoc} from 'firebase/firestore';
-
+import { FieldValue, arrayRemove, arrayUnion, updateDoc} from 'firebase/firestore';
+import { stackOrderInsideOut } from 'd3';
+//import { updateQuantity } from '../redux/order/order.actions';
 
 
 
@@ -94,28 +95,45 @@ export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({prompt: 'select_account'});
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
+
+const orderRef= firestore.collection('orders');
+const Shot = ()=>{
+  var data; 
+  orderRef.onSnapshot(async snapshot => {    
+  const orderItem= convertOrderSnapshotToMap(snapshot);
+  data = orderItem.data[0];
+  console.log("value oof data : " + data.name);
+    return data
+  })
+  return data;
+};
+
+console.log("value oof a : " + Shot());
 export const addOrderDoc = async (orderKey,objectsToAdd,) => {
   const orderRef= firestore.collection(orderKey).doc("orderItems");
   // const ref = firestore.doc(`${orderKey}/orderItems`)
   // console.log(ref);
   
-  
+  console.log(orderRef);
+
+  const {ord} = Shot;
+console.log(ord.length())
   objectsToAdd.forEach(obj =>
-    updateDoc(orderRef, {data: arrayUnion(obj)})
+    {if(obj.id === ord){
+      updateDoc(orderRef, {data: FieldValue.arrayRemove(obj)})
+    }}
+    
   )
-  console.log(objectsToAdd)
-  
+   console.log(objectsToAdd)
+
 };
+
 
 export const convertOrderSnapshotToMap = (orders) => {
   const transformedOrder = orders.docs.map(doc => {
     const {data} = doc.data();
-    
-
     return {
-  
-      data: data,
-      
+      data: data 
     }
   });
   //console.log(transformedCollection);
@@ -125,5 +143,7 @@ export const convertOrderSnapshotToMap = (orders) => {
   }, {});
   
 }; 
+
+
 
 export default firebase;
