@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CollectionPreviewContainer = styled.div`
   display: flex;
@@ -24,10 +24,16 @@ export const PreviewContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 15px;
-    grid-row-gap: 25px;
+    grid-column-gap: 30px;
+    grid-row-gap: 40px;
+  }
+
+  @media screen and (max-width: 760px) {
+    grid-template-columns: 1fr;
+    // grid-row-gap: 15px;
+    // grid-column-gap: 20px;
   }
 `;
