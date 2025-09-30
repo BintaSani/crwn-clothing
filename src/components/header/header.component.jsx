@@ -51,7 +51,7 @@ const Header = ({
           <OptionLink to="/signin">SIGN IN</OptionLink>
         )}
         <CartIcon />
-        {hide ? <Drop src={user ? user.photoURL : ""} alt="" /> : null}
+        <Drop src={user ? user.photoURL : ""} alt="" />
         <MenuButton onClick={managementHidden}>
           {hide ? <StyledMenuIcon /> : <StyledCloseIcon />}
         </MenuButton>

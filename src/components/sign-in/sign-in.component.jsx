@@ -14,8 +14,6 @@ import {
   SignInContainer,
   SignInTitle,
   ButtonsBarContainer,
-  CheckBox,
-  Label,
 } from "./sign-in.styles";
 
 const SignIn = ({ emailSignInStart, googleSignInStart }) => {

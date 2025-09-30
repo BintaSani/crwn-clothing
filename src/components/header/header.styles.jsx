@@ -59,6 +59,7 @@ export const MobileOptionLink = styled(Link)`
     padding: 10px 15px;
     cursor: pointer;
     text-align: center;
+    justify-content: center;
 
     &:focus {
       color: grey;
