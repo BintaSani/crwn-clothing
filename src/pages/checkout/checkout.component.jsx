@@ -60,7 +60,7 @@ const  CheckoutPage = ({cartItems, total}) => {
         <WarningContainer>
              *please use the following test credit card for payments*
             <br/>
-            4242 4242 4242 4242 - Exp: 01/25 - Cvv:123
+            4242 4242 4242 4242 - Cvv:123
         </WarningContainer>
         <StripeCheckoutButton  onSubmit={()=>addOrderDoc('orders',cartItems.map(({id,name, imageUrl, quantity,price}) => ({id,name, imageUrl,quantity,price})))} price={total} />
         
@@ -76,5 +76,6 @@ const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems,
     total: selectCartTotal
 });
+
 
 export default connect(mapStateToProps)(CheckoutPage);
